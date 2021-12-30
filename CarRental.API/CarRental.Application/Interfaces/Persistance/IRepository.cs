@@ -13,19 +13,21 @@ namespace CarRental.Application.Interfaces.Persistance
         bool Changed();
         int Save();
         Task<int> SaveAsync();
-        IQueryable<int> All();
+        IQueryable<T> All();
+        void Delete(I id);
         bool Contains(Expression<Func<T, bool>> predicate);
-        Task<bool> ContainsAsync(Expression<Func<Task, bool>> predicate);
+        Task<bool> ContainsAsync(Expression<Func<T, bool>> predicate);
         T Find(params object[] keys);
+        T Find(Expression<Func<T, bool>> predicate);
         Task<T> FindAsync(Expression<Func<T, bool>> predicate);
 
         T Add(T newObject);
 
         void DeleteAll();
         void Delete(T deleteObject);
-        void MarkAsDeleted(T deleteObject, int? userId);
-        void MarkAsDeleted(Expression<Func<T, bool>> predicate, int? userId);
-        void MarkAsDeleted(I id, int? userId);
+        void MarkAsDeleted(T deleteObject, T? userId);
+        void MarkAsDeleted(Expression<Func<T, bool>> predicate, T? userId);
+        void MarkAsDeleted(I id, T? userId);
         void Update(T updateObject);
         List<T> Update(Expression<Func<T, bool>> predicate, Expression<Func<T,T>> updateFactory);
         
@@ -37,6 +39,7 @@ namespace CarRental.Application.Interfaces.Persistance
         Task<bool> AnyAsync();
         T GetById(I id);
         T SingleOrDefault(Expression<Func<T, bool>> predicate);
+        Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate);
         T FirstOrDefault();
         Task<T> FirstOrDefaultAsync();
         T FirstOrDefault(Expression<Func<T, bool>> predicate);

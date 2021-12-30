@@ -21,16 +21,18 @@ namespace CarRental.Infrastructure.Auth
         private readonly IConfiguration configuration;
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly RoleManager<Role> roleManager;
 
         public Authorization(
             IConfiguration configuration,
             UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            RoleManager<Role> roleManager)
         {
             this.configuration = configuration;
             this.userManager = userManager;
             this.signInManager = signInManager;
-
+            this.roleManager = roleManager;
         }
 
         public async Task Register(RegisterModel registerModel, SmtpCredintials credintials, ConfirmationCredintials hostCredintials)
@@ -45,6 +47,7 @@ namespace CarRental.Infrastructure.Auth
                 };
 
                 var createUserResult = await userManager.CreateAsync(newUser, registerModel.Password);
+
                 if (createUserResult.Succeeded)
                 {
                     var generateEmailConfirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(newUser);
@@ -108,7 +111,17 @@ namespace CarRental.Infrastructure.Auth
                     {
                         user = await userManager.FindByEmailAsync(loginModel.UsernameOrEmail);
                     }
+
+                    var userRoles = await userManager.GetRolesAsync(user);
+
                     var userclaims = await userManager.GetClaimsAsync(user);
+
+                    foreach (var role in userRoles)
+                    {
+                        userclaims.Add(new Claim(ClaimTypes.Role, role));
+                    }
+
+
                     var expirationTokenTIme = DateTime.Now.AddMinutes(5);
 
                     return new TokenModel
@@ -135,7 +148,7 @@ namespace CarRental.Infrastructure.Auth
 
 
         private string CreateToken(IList<Claim> claims, DateTime expiresAt, byte[] clientSecret)
-        { 
+        {
 
             var jwt = new JwtSecurityToken(
                 claims: claims,

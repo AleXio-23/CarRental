@@ -1,3 +1,4 @@
+using CarRental.Application.Tools.DI;
 using CarRental.Domain.Auth;
 using CarRental.Infrastructure.DI;
 using CarRental.Persistance.Database.DbContext;
@@ -56,6 +57,8 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.RegisterPersistanceServices();
 builder.Services.RegisterIfrastructureServices();
+builder.Services.RegisterGameApplicationServices();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
