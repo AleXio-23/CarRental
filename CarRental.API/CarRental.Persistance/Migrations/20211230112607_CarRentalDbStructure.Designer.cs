@@ -4,6 +4,7 @@ using CarRental.Persistance.Database.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Persistance.Migrations
 {
     [DbContext(typeof(CarRentalAppDbContext))]
-    partial class CarRentalAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211230112607_CarRentalDbStructure")]
+    partial class CarRentalDbStructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

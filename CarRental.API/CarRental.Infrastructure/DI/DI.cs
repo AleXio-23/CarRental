@@ -10,7 +10,7 @@ namespace CarRental.Infrastructure.DI
 {
     public static class DI
     {
-        public static IServiceCollection RegisterPersistanceServices(this IServiceCollection services)
+        public static IServiceCollection RegisterIfrastructureServices(this IServiceCollection services)
         {
             services.AddScoped<IAuthorization, Authorization>();
 
