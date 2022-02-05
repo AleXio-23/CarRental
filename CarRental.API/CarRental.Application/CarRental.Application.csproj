@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Dictionary\City\Commands\" />
     <Folder Include="User\UserProfile\Commands\" />
   </ItemGroup>
 

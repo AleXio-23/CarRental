@@ -11,8 +11,22 @@ import { useEffect, useState } from 'react';
 
 const MainContent = () => {
 
-    const [isExpanded, setExpanded] = useState(true);
+    const [isExpanded, setExpanded] = useState(true)
+    
+    const alexYle = (e) => {
+        let windowWidth = window.innerWidth; 
+        if(windowWidth <= 780){
+            setExpanded(false);
+        } else {
+            setExpanded(true);
+        }
+    }
+    useEffect(() => { 
+       
+        window.addEventListener('resize', alexYle)
+        return () => window.removeEventListener('resize')
 
+    }, [ ]);
 
     useEffect(() => { 
       }, [isExpanded]);
@@ -31,6 +45,7 @@ const MainContent = () => {
 
 
                 <h2>Content area</h2>
+                <h1>{window.innerWidth}</h1>
                 <Routes>
                     <Route path="home" element={<Home />} />
                     

@@ -1,4 +1,5 @@
-﻿using CarRental.Application.User.User.Commands.AddNewRoleCommand;
+﻿using CarRental.Application.Dictionary.City.Queries.GetCitiesQuery;
+using CarRental.Application.User.User.Commands.AddNewRoleCommand;
 using CarRental.Application.User.User.Commands.AssignUserToRoleCommand;
 using CarRental.Application.User.User.Queries.GetUsersQuery;
 using CarRental.Application.User.UserProfile.Queries.GetUserProfileQuery;
@@ -20,6 +21,7 @@ namespace CarRental.Application.Tools.DI
             services.AddScoped<IGetUsersQuery, GetUsersQuery>();
             services.AddScoped<IAddNewRoleCommand, AddNewRoleCommand>();
             services.AddScoped<IAssignUserToRoleCommand, AssignUserToRoleCommand>();
+            services.AddScoped<IGetCitiesQuery, GetCitiesQuery>();
            
 
             return services;

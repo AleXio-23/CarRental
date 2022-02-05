@@ -1,5 +1,6 @@
 ﻿using CarRental.Application.Interfaces.Persistance;
 using CarRental.Application.Interfaces.Persistance.Processing;
+using CarRental.Domain.Dictionary;
 using CarRental.Domain.User;
 using CarRental.Persistance.Database.DbContext;
 using System;
@@ -16,15 +17,18 @@ namespace CarRental.Persistance.Database.DbService
 
         public CarRentalDbService(CarRentalAppDbContext dbContext
             , IUserRepository<UserProfile, int> userProfile
+            , IDictionaryRepository<City, int> cities
 
             )
         {
             this._dbContext = dbContext;
             UserProfile = userProfile;
+            Cities = cities;
         }
 
         public IUserRepository<UserProfile, int> UserProfile { get; }
 
+        public IDictionaryRepository<City, int> Cities { get; }
 
         public void Save()
         {
