@@ -1,13 +1,10 @@
-﻿using CarRental.Application.User.User.Commands.AddNewRoleCommand;
+﻿using CarRental.Application.Dictionary.Car.Queries.GetManufacturerQuery;
+using CarRental.Application.Dictionary.City.Queries.GetCitiesQuery;
+using CarRental.Application.User.User.Commands.AddNewRoleCommand;
 using CarRental.Application.User.User.Commands.AssignUserToRoleCommand;
 using CarRental.Application.User.User.Queries.GetUsersQuery;
 using CarRental.Application.User.UserProfile.Queries.GetUserProfileQuery;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRental.Application.Tools.DI
 {
@@ -20,6 +17,8 @@ namespace CarRental.Application.Tools.DI
             services.AddScoped<IGetUsersQuery, GetUsersQuery>();
             services.AddScoped<IAddNewRoleCommand, AddNewRoleCommand>();
             services.AddScoped<IAssignUserToRoleCommand, AssignUserToRoleCommand>();
+            services.AddScoped<IGetCitiesQuery, GetCitiesQuery>(); 
+            services.AddScoped<IGetManufacturerQuery, GetManufacturerQuery>(); 
            
 
             return services;

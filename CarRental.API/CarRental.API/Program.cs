@@ -15,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 
+var envionment = builder.Environment;
+
 builder.Services.AddIdentity<User, Role>(options =>
 {
     options.User.RequireUniqueEmail = true;
@@ -60,6 +62,20 @@ builder.Services.RegisterIfrastructureServices();
 builder.Services.RegisterGameApplicationServices();
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(bldr => {
+        var allowedOrigins = builder.Configuration.GetValue<string>("CorsAllwedOrigins");
+        if(string.IsNullOrEmpty(allowedOrigins) || (allowedOrigins == "*" && envionment.IsDevelopment()))
+        {
+            bldr.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        } else
+        {
+            bldr.WithOrigins(allowedOrigins.Split(";"))
+                .AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+        }
+    });
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -75,6 +91,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 

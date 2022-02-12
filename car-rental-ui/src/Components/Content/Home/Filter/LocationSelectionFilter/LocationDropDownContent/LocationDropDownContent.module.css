@@ -1,0 +1,44 @@
+.locationDropDownContent{
+    width: 100%;
+    height: auto;
+}
+
+.locationDropSingle{
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    cursor: pointer;
+    align-items: center; 
+}
+
+.locationDropSingle:hover {
+    background-color: rgb(241, 241, 241);
+    transition: background-color 300ms linear;
+}
+
+
+
+.locIcon{
+    width: 60px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(110, 110, 110);
+    font-size: 20px;
+}
+
+.locText{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cityName{
+    font-size: 17px;
+    font-weight: bold;
+}
+.citieCountry{
+    font-size: 13px;
+    color: rgb(110, 110, 110);
+}

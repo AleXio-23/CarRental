@@ -19,7 +19,7 @@
 
 .headerLogoNotExpanded{
     width: 100%!important;
-    height: 60px;
+   min-height: 50px;
     margin: 0; 
 }
 

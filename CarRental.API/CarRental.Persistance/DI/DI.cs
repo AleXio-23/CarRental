@@ -1,5 +1,6 @@
 ﻿using CarRental.Application.Interfaces.Persistance;
 using CarRental.Application.Interfaces.Persistance.Processing;
+using CarRental.Domain.Dictionary;
 using CarRental.Domain.User;
 using CarRental.Persistance.Database.DbService;
 using CarRental.Persistance.Repositories;
@@ -19,6 +20,9 @@ namespace CarRental.Persistance.DI
         {
             serviceCollection.AddScoped<ICarRentalDBService, CarRentalDbService>();
             serviceCollection.AddScoped<IUserRepository<UserProfile, int>, UserRepository<UserProfile, int>>();
+            serviceCollection.AddScoped<IDictionaryRepository<City, int>, DictionaryRepository<City, int>>();
+            serviceCollection.AddScoped<IDictionaryRepository<VwCity, int>, DictionaryRepository<VwCity, int>>();
+            serviceCollection.AddScoped<IDictionaryRepository<Manufacturer, int>, DictionaryRepository<Manufacturer, int>>();
              
             return serviceCollection;
         }

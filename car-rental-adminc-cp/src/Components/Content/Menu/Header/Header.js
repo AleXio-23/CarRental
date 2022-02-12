@@ -1,6 +1,6 @@
 import styles from './Header.module.css';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
-import { faBars, faSearch, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCog, faSearch, faSignOutAlt, faSortDown, faSortUp, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import noAvatar from '../../../../Images/noAvatar.png'
 
 
@@ -20,17 +20,17 @@ const Header = ( {isExpanded, setExpanded}) => {
         <div className={styles.headerProfile}>
             <div className={styles.profileContent}>
                 <img src={noAvatar} className={styles.prifileImage} alt="header no avatar"/>
-                <span>John Doe</span>
-                <FontAwesomeIcon icon={faSortDown} className={styles.avatarArror}/>
+                <span className={styles.headerUserInfo}>John Doe</span>
+                <FontAwesomeIcon icon={faSortDown} className={styles.avatarArrow}/>
             </div>
 
             <div className={styles.profileDropDownContent}>
                 
                 <ul className={styles.profileDropdownMenu}>
-                    <li>Profile</li>
-                    <li>Settings</li>
+                    <li><FontAwesomeIcon icon={faUserAlt}/>Profile</li>
+                    <li><FontAwesomeIcon icon={faCog}/>Settings</li>
                     <hr />
-                    <li>Log out</li>
+                    <li><FontAwesomeIcon icon={faSignOutAlt}/>Log out</li>
                 </ul>
             </div>
         </div>
