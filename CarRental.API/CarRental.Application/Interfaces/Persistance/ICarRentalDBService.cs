@@ -13,6 +13,8 @@ namespace CarRental.Application.Interfaces.Persistance
     {
         IUserRepository<UserProfile, int> UserProfile { get; }
         IDictionaryRepository<City, int> Cities {get;}
+        IDictionaryRepository<VwCity, int> VwCities {get;}
+        IDictionaryRepository<Manufacturer, int> Manufacturers {get;}
       
     }
 }

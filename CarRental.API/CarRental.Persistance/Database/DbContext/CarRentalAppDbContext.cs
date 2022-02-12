@@ -23,6 +23,7 @@ namespace CarRental.Persistance.Database.DbContext
         public virtual DbSet<CarRentalHistory> CarRentalHistories { get; set; } 
         public virtual DbSet<CarRentalStatus> CarRentalStatuses { get; set; } 
         public virtual DbSet<City> Cities { get; set; } 
+        public virtual DbSet<VwCity> VwCities { get; set; } 
         public virtual DbSet<Country> Countries { get; set; } 
         public virtual DbSet<CurrentCarRentalStatus> CurrentCarRentalStatuses { get; set; } 
         public virtual DbSet<FuelType> FuelTypes { get; set; } 

@@ -1,0 +1,251 @@
+.AuthorizedDrop{
+    width: 100%;
+    height: 100%; 
+    display: flex;
+    flex-direction: column; 
+    font-family: Arial, sans-serif;
+}
+
+
+.inputPairs{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 5px;
+    font-weight: 100;  
+    margin-bottom: 15px;
+}
+
+.inputWrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    border-radius: 5px;
+    color: gray;
+}
+.inputIcon {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputBox{
+    background: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.inputWrapper{
+    background-color: white;
+}
+
+.authorizeBtns{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color:white;
+    align-items: center;
+}
+
+
+.authorizeBtns a {
+    text-decoration: none;
+    color: gray;
+    font-weight: 100;
+    letter-spacing: 0;
+}
+ 
+.rememberPass:hover{
+    color: #0089A6;
+    transition: color 100ms linear;
+}
+
+.signInBtn{
+    background-color: #0089A6;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 5px;
+    color: white!important;
+}
+
+.signInBtn:hover {
+    background-color: #25bad8;
+    transition: background-color 100ms linear;
+}
+
+.separatorLine {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+ 
+}
+
+ 
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+    color: gray;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: gray;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Shared */
+.loginBtn {
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
+    font-weight: 100;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .loginBtn:focus {
+    outline: none;
+  }
+  .loginBtn:active {
+    box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+  }
+  
+  .socialBtns{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+  }
+   
+
+  .iconFacebookSt, .iconGoogleSt  {
+      width: 20px;
+      height: 20px;
+      align-self: center;
+      padding:5px;
+      padding-left: 10px;
+      padding-right: 10px;
+  }
+
+
+  .registerIcon{
+    align-self: center; 
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 15px; 
+      border-right: 1px solid #026c81; 
+      font-weight: bold;
+  }
+ 
+
+
+  .iconFacebookSt{
+      border-right: 1px solid #3a539b;
+  }
+
+  
+  .iconGoogleSt{
+    border-right: 1px solid #b83d2d;
+}
+
+  .loginBtnFacebook {
+    background-color: #4C69BA;
+    background-image: linear-gradient(#4C69BA, #3B55A0);
+    display: flex;
+    flex-direction: row;
+}
+
+.socialBtnText{
+    width: 100%;
+    padding-left: 10px;
+}
+
+
+.loginBtnFacebook:hover,
+.loginBtnFacebook:focus {
+  background-color: #5B7BD5;
+  background-image: linear-gradient(#5B7BD5, #4864B1);
+}
+
+
+.loginBtnGoogle{
+    display: flex;
+    flex-direction: row;  
+    background: #DD4B39;
+}
+
+
+.loginBtnGoogle:hover,
+.loginBtnGoogle:focus {
+  background: #E74B37;
+}
+
+
+
+
+.signUpBtn{
+    display: flex;
+    flex-direction: row;  
+    align-items: center;
+    justify-content: center;
+    background:  #0089A6;
+    
+    padding: 3px;
+}
+
+
+
+.signUpBtn:hover,
+.signUpBtn:focus {
+  background: #0fa4c2;
+}

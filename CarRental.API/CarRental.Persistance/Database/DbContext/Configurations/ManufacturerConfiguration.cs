@@ -17,6 +17,7 @@ namespace CarRental.Persistance.Database.DbContext.Configurations
             builder.ToTable("Manufacturer", "dictionary");
 
             builder.Property(e => e.ManufacturerName).HasMaxLength(255);
+            builder.Property(e => e.Code).HasMaxLength(255);
         }
     }
 }

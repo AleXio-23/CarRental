@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'; 
+import AuthorizedDrop from './AuthorizedDrop/AuthorizedDrop';
 import styles from './Header.module.css';
 import HeaderMenu from './HeaderMenu/HeaderMenu';
 import { ReactComponent as LogoSvg } from './logo.svg';
+import UnauthorizedDrop from './UnauthorizedDrop/UnauthorizedDrop';
 
 const Header = () => {
 
@@ -61,7 +63,11 @@ const Header = () => {
                 }    
 
                 <div className={`${styles.headerDropDownArea} ${isHeaderLogUserAreaOpen? styles.headerDropDownAreaOpened : styles.headerDropDownAreaClosed} `}>
-                    HERE is drop
+                    
+                     {
+                         isAuthorised?
+                         <AuthorizedDrop/> : <UnauthorizedDrop/>
+                     }
                 </div>
             </div>
 

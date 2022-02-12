@@ -9,6 +9,6 @@ namespace CarRental.Application.Dictionary.City.Queries.GetCitiesQuery
 {
     public interface IGetCitiesQuery
     {
-        List<CityDTO> Execute();
+        List<VwCityDTO> Execute();
     }
 }

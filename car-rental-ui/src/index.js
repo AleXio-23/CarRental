@@ -14,6 +14,7 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'; 
 import { saga as citiesSaga } from './Modules/Dictionary/Cities';
+import { saga as manufacturersSaga } from './Modules/Dictionary/Manufacturers';
 
 import { Provider } from 'react-redux';
 
@@ -31,6 +32,7 @@ const store = createStore(allReducers, /* preloadedState, */ composeEnhancers(
 ));
 
 sagaMiddleWare.run(citiesSaga.watchCities);
+sagaMiddleWare.run(manufacturersSaga.watchCities);
 // sagaMiddleWare.run(currentweatherSaga.watchCurrentWeather);
 // sagaMiddleWare.run(dailyWeatherSaga.watchDailyWeather);
 

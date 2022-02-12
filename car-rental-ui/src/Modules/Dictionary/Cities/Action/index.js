@@ -2,9 +2,10 @@ import { GET_ALL_CITIES_FAILED, GET_ALL_CITIES_PENDING, GET_ALL_CITIES_SUCCESS }
 
 
 export const citiesAction = {
-    get: () => {
+    get: (filterWord) => {
         return {
-            type: GET_ALL_CITIES_PENDING
+            type: GET_ALL_CITIES_PENDING,
+            filterWord
         }
     },
     set: (data) => {

@@ -18,17 +18,24 @@ namespace CarRental.Persistance.Database.DbService
         public CarRentalDbService(CarRentalAppDbContext dbContext
             , IUserRepository<UserProfile, int> userProfile
             , IDictionaryRepository<City, int> cities
+            , IDictionaryRepository<VwCity, int> vwCities
+            , IDictionaryRepository<Manufacturer, int> manufacturers
 
             )
         {
             this._dbContext = dbContext;
             UserProfile = userProfile;
             Cities = cities;
+            VwCities = vwCities;
+            Manufacturers = manufacturers;
         }
 
         public IUserRepository<UserProfile, int> UserProfile { get; }
 
         public IDictionaryRepository<City, int> Cities { get; }
+        public IDictionaryRepository<VwCity, int> VwCities { get; }
+
+        public IDictionaryRepository<Manufacturer, int> Manufacturers { get; }
 
         public void Save()
         {
@@ -37,7 +44,7 @@ namespace CarRental.Persistance.Database.DbService
 
         public async Task SaveAsync()
         {
-            _dbContext.SaveChangesAsync();
+            _ = _dbContext.SaveChangesAsync();
         }
     }
 }
