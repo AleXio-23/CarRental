@@ -1,7 +1,7 @@
-import { GET_FILTER_FAILED, GET_FILTER_SUCCESS, GET_FILTER_PENDING } from "../../../../Tools/Constants/DictionaryConstants";
+ import { GET_FILTER_FAILED, GET_FILTER_PENDING, GET_FILTER_SUCCESS } from "../../../Tools/Constants/DictionaryConstants"
 
 
-export const citiesAction = {
+export const filterAction = {
     get: () => {
         return {
             type: GET_FILTER_PENDING,

@@ -29,6 +29,18 @@ const Header = () => {
     }, []);
 
 
+    useEffect(() => {
+        var item = localStorage.getItem('tokenData');
+        if(item === null || item === undefined) {
+            setAuthorised(false);
+        } else {
+            setAuthorised(true);
+        }
+    }, []);
+
+    console.log(localStorage.getItem('tokenData'));
+
+
     return <div className={styles.header}>
         <div className={styles.headerContent}>
             <div className={styles.headerLogo}>

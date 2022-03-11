@@ -6,28 +6,41 @@ import React, { useEffect, useRef, useState } from 'react';
 import Header from '../Content/Header/Header';
 import Home from '../Content/Home/Home';
 import AuthorizedDrop from '../Content/Header/UnauthorizedDrop/UnauthorizedDrop';
-import Slide from '../Content/Home/Slider/Slide';
+import Slide from '../Content/Slider/Slide';
+import { useUnauthorized } from '../../Tools/Helpers/axios';
 
+import { useParams } from 'react-router';
 function App() {
+
+   useUnauthorized()
+   const { urlType } = useParams();
+   
+   const renderComponent = () => {
  
- 
-  return (
-    <div className={styles.app}>
-       <div className={styles.appHeader}  > 
-          <Header   />
-          
-          
-       </div>
-       <div className={styles.appContent}>
-         <div className={styles.sliderArea}>
-               <Slide />
+      switch (urlType) {
+          case 'home':
+              return <Home />
+
+      }
+  }
+
+   return (
+      <div className={styles.app}>
+         <div className={styles.appHeader}  >
+            <Header />
+
+
          </div>
-          <div className={styles.appContentArea}>
-               <Home />
-          </div>
-       </div>
-    </div>
-  );
+         <div className={styles.appContent}>
+            <div className={styles.sliderArea}>
+               <Slide />
+            </div>
+            <div className={styles.appContentArea}>
+                {renderComponent()}
+            </div>
+         </div>
+      </div>
+   );
 }
 
 export default App;

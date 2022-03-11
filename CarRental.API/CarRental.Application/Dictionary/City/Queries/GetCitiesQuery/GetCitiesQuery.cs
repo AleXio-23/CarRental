@@ -10,7 +10,7 @@ namespace CarRental.Application.Dictionary.City.Queries.GetCitiesQuery
 {
     class GetCitiesQuery : IGetCitiesQuery
     {
-        private ICarRentalDBService _dbService;
+        private readonly ICarRentalDBService _dbService;
 
         public GetCitiesQuery(ICarRentalDBService dbService)
         {

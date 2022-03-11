@@ -1,26 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'; 
-import reportWebVitals from './reportWebVitals';
-import {
-  Switch,
-  Route,
-  Link,
-  Routes,
-  Router,
-  BrowserRouter
-  
-} from "react-router-dom";
+import reportWebVitals from './reportWebVitals'; 
 import createSagaMiddleware from 'redux-saga';
-import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'; 
-import { saga as citiesSaga } from './Modules/Dictionary/Cities';
-import { saga as manufacturersSaga } from './Modules/Dictionary/Manufacturers';
+import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction';  
 
 import { Provider } from 'react-redux';
 
 import { applyMiddleware, createStore } from 'redux';
-import allReducers from './Modules/allReducers';
-import App from './Components/Root/App';
+import allReducers from './Modules/allReducers'; 
+import rootSaga from './Modules/rootSaga';
+import CarRentalRoutes from './Routes/Routes';
+import { BrowserRouter } from 'react-router-dom';
 
 const sagaMiddleWare = createSagaMiddleware();
 const composeEnhancers = composeWithDevTools({
@@ -31,8 +22,7 @@ const store = createStore(allReducers, /* preloadedState, */ composeEnhancers(
   // other store enhancers if any
 ));
 
-sagaMiddleWare.run(citiesSaga.watchCities);
-sagaMiddleWare.run(manufacturersSaga.watchCities);
+sagaMiddleWare.run(rootSaga); 
 // sagaMiddleWare.run(currentweatherSaga.watchCurrentWeather);
 // sagaMiddleWare.run(dailyWeatherSaga.watchDailyWeather);
 
@@ -40,7 +30,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-          <App />
+          <CarRentalRoutes />
         </Provider>
     </BrowserRouter>
   </React.StrictMode>,

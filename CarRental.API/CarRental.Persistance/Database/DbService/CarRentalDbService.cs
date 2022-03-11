@@ -20,6 +20,11 @@ namespace CarRental.Persistance.Database.DbService
             , IDictionaryRepository<City, int> cities
             , IDictionaryRepository<VwCity, int> vwCities
             , IDictionaryRepository<Manufacturer, int> manufacturers
+            , IDictionaryRepository<CarModel, int> carModels
+            , IDictionaryRepository<CarCategory, int> carCategories
+            , IDictionaryRepository<Transmision, int> transmissions
+            , IDictionaryRepository<FuelType, int> fuelTypes
+            , IDictionaryRepository<WheelType, int> wheelTypes
 
             )
         {
@@ -28,6 +33,11 @@ namespace CarRental.Persistance.Database.DbService
             Cities = cities;
             VwCities = vwCities;
             Manufacturers = manufacturers;
+            CarModels = carModels;
+            CarCategories = carCategories;
+            Transmissions = transmissions;
+            FuelTypes = fuelTypes;
+            WheelTypes = wheelTypes;
         }
 
         public IUserRepository<UserProfile, int> UserProfile { get; }
@@ -36,6 +46,16 @@ namespace CarRental.Persistance.Database.DbService
         public IDictionaryRepository<VwCity, int> VwCities { get; }
 
         public IDictionaryRepository<Manufacturer, int> Manufacturers { get; }
+
+        public IDictionaryRepository<CarModel, int> CarModels { get; }
+
+        public IDictionaryRepository<CarCategory, int> CarCategories { get; }
+
+        public IDictionaryRepository<Transmision, int> Transmissions { get; }
+
+        public IDictionaryRepository<FuelType, int> FuelTypes { get; }
+
+        public IDictionaryRepository<WheelType, int> WheelTypes { get; }
 
         public void Save()
         {

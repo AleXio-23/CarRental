@@ -1,6 +1,4 @@
-import Filter from './Filter/Filter';
-import styles from './Home.module.css';
-import Slide from './Slider/Slide';
+import styles from './Home.module.css'; 
 
 const Home = () => {
 

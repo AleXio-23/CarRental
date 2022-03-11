@@ -2,10 +2,10 @@ import { GET_ALL_MANUFACTURERS_FAILED, GET_ALL_MANUFACTURERS_PENDING, GET_ALL_MA
 
 
 export const manufacturersAction = {
-    get: (filterWord) => {
+    get: () => { 
         return {
-            type: GET_ALL_MANUFACTURERS_PENDING,
-            filterWord
+            type: GET_ALL_MANUFACTURERS_PENDING 
+             
         }
     },
     set: (data) => {

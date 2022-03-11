@@ -1,4 +1,4 @@
-import { GET_FILTER_FAILED, GET_FILTER_SUCCESS, GET_FILTER_PENDING } from "../../../../Tools/Constants/DictionaryConstants";
+import { GET_FILTER_FAILED, GET_FILTER_PENDING, GET_FILTER_SUCCESS } from "../../../Tools/Constants/DictionaryConstants"
 
 
 const initialState = {
@@ -14,14 +14,12 @@ const initialState = {
         locationCountry: null,
         rentFromDate: null,
         retnToDate: null,
-        manufacturerId: null,
-        manufacturer: null,
-        carModelId: null,
-        carModel: null,
-        carCategoryId: null,
-        carCategory: null,
-        carTransmisionId: null,
-        carTransmision: null,
+
+        manufacturerIdsList: [], 
+        carModelIdsList: [], 
+        carCategoryIdsList: [], 
+        carTransmisionIdsList: [], 
+
         fuelTypeId: null,
         fuelType: null,
         priceFrom: null,
@@ -32,7 +30,7 @@ const initialState = {
     errorMessage: ''
 }
 
-const citiesReducer = (state = initialState, action) => {
+const filterReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_FILTER_PENDING:
             return {
@@ -72,4 +70,4 @@ const citiesReducer = (state = initialState, action) => {
     }
 }
 
-export default citiesReducer;
+export default filterReducer;

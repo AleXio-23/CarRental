@@ -1,5 +1,6 @@
 ﻿using CarRental.Infrastructure.Auth;
 using CarRental.Infrastructure.Auth.Models;
+using CarRental.Persistance.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -75,7 +76,7 @@ namespace CarRental.API.Auth
             return Ok(result);
         }
 
-
+        [Authorize]
         [HttpPost("SignOut")]
         public async Task<IActionResult> SignOut()
         {
@@ -83,6 +84,15 @@ namespace CarRental.API.Auth
             var signInHandler = scope.ServiceProvider.GetService<IAuthorization>();
             await signInHandler.SignOut();
             return Ok();
+        }
+
+        [Authorize]
+        [Route("TokenValidate")]
+        [HttpGet]
+        public ActionResult<ServiceResult<bool>> TokenValidate()
+        {
+
+            return Ok(new ServiceResult<bool>() { Success = true});
         }
     }
 }

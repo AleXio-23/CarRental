@@ -1,10 +1,9 @@
 import * as action from './Action'
-import reducer from './Reducer'
-import * as saga from './Saga'
+import reducer from './Reducer' 
 
 
 export {
     action,
-    reducer,
-    saga
+    reducer 
+     
 }

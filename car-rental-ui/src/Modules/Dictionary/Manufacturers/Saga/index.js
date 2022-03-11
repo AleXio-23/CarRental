@@ -14,20 +14,18 @@ var postData = {
     }
 };
 
-    function* currentAsync(params) {
-        try{
-            const data = yield call(axios.post, `https://localhost:7040/Dictionary/GetManufacturers`, postData, axiosConfig);
+function* currentAsync() { 
+    try{
+         const data = yield call(axios.post, `https://localhost:7040/Dictionary/GetManufacturers`, postData, axiosConfig);
            
-            const filterData = data.data.data?.filter(
-                x => x.manufacturerName.toString().toLowerCase().includes(params.filterWord.toString().toLowerCase())               
-                );
-            yield put(manufacturersAction.set(filterData));
-        } catch(error) {
-            console.log(error);
-        }
+        const filterData = data.data.data;
+        yield put(manufacturersAction.set(filterData));
+    } catch(error) {
+        console.log(error);
     }
+}
 
-export function* watchCities() {
+export function* watchManufacturers() { 
     yield takeLatest(GET_ALL_MANUFACTURERS_PENDING, currentAsync);
 }
 
