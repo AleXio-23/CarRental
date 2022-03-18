@@ -12,6 +12,7 @@ import allReducers from './Modules/allReducers';
 import rootSaga from './Modules/rootSaga';
 import CarRentalRoutes from './Routes/Routes';
 import { BrowserRouter } from 'react-router-dom';
+import App from './Components/Root/App';
 
 const sagaMiddleWare = createSagaMiddleware();
 const composeEnhancers = composeWithDevTools({
@@ -30,7 +31,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-          <CarRentalRoutes />
+           <App/>
         </Provider>
     </BrowserRouter>
   </React.StrictMode>,

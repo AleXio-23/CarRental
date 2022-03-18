@@ -20,11 +20,9 @@ function* currentAsync(params) {
         password: params.userPassword,
         rememberMe: true
     }
-    try{
-        console.log(postData);
-         const data = yield call(axiosInstance.post, `https://localhost:7040/Auth/SignIn`, postData, axiosConfig);
-
-         console.log(filterData);
+    try{ 
+         const data = yield call(axios.post, `https://localhost:7040/Auth/SignIn`, postData, axiosConfig);
+ 
            
         const filterData = data.data;
         yield put(authorizeAction.set(filterData));

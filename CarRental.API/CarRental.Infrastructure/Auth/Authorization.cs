@@ -22,6 +22,7 @@ namespace CarRental.Infrastructure.Auth
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
         private readonly RoleManager<Role> roleManager;
+         
 
         public Authorization(
             IConfiguration configuration,
@@ -35,16 +36,29 @@ namespace CarRental.Infrastructure.Auth
             this.roleManager = roleManager;
         }
 
-        public async Task Register(RegisterModel registerModel, SmtpCredintials credintials, ConfirmationCredintials hostCredintials)
+        public async Task<RegistrationResponse> Register(RegisterModel registerModel, SmtpCredintials credintials, ConfirmationCredintials hostCredintials)
         {
             try
             {
+
+                var tryFindByUserName = await userManager.FindByNameAsync(registerModel.UserName);
+                if(tryFindByUserName != null)
+                {
+                    return new RegistrationResponse() { ErrorOccured = true, ErrorMessage = "This username is registered." };
+                }
+
+                var tryFindByMail = await userManager.FindByEmailAsync(registerModel.Email);
+                if (tryFindByMail != null)
+                {
+                    return new RegistrationResponse() { ErrorOccured = true, ErrorMessage = "This mail is registered." };
+                }
+
                 var newUser = new User
                 {
                     Email = registerModel.Email,
                     UserName = registerModel.UserName.Length > 0 ? registerModel.UserName : registerModel.Email
 
-                };
+                };  
 
              
 
@@ -69,7 +83,12 @@ namespace CarRental.Infrastructure.Auth
                     emailClient.Credentials = new NetworkCredential(credintials.NetworkCredintialUsername, credintials.Password);
                     await emailClient.SendMailAsync(message);
 
-
+                    return new RegistrationResponse()
+                    {
+                        Succees = true,
+                        Mail = newUser.Email
+                    };
+                    
                 }
                 else
                 {

@@ -1,37 +1,42 @@
- 
+
 import {
-    BrowserRouter as Router,
-   
-    Route,
-    Link, 
-    Routes,
-    Navigate
-  } from "react-router-dom";  
+  BrowserRouter as Router,
+
+  Route,
+  Link,
+  Routes,
+  Navigate
+} from "react-router-dom";
+import Home from "../Components/Content/Home/Home";
 import Register from "../Components/Content/Register/Register";
+import RegisterCompleted from "../Components/Content/Register/RegisterCompleted/RegisterCompleted";
 import App from "../Components/Root/App";
 
-const CarRentalRoutes = (params) => { 
-  console.log("Adasd");
+const CarRentalRoutes = (params) => {
   return (
- 
-        <Routes>
-          
-          {/* <Route
+
+    <Routes>
+
+      {/* <Route
             path="/"
             exact
             render={
               () => {
-                return <Navigate to="/home" />
+                return <Navigate to="/" />
               }
             } /> */}
-          <Route path="/:urlType" exact element={App} />
-          <Route path="/register" exact element={Register}/>
-       
-          {/* <Route component={PageNotFound} /> */}
+      <Route path="/" exact element={<Home />} />
+      <Route path="/register" exact element={<Register />} />
+      <Route path="/register/completed" exact element={<RegisterCompleted />} />
 
-        </Routes>
 
- 
+      <Route path="" element={<Navigate to="/" />} />
+
+      {/* <Route component={PageNotFound} /> */}
+
+    </Routes>
+
+
 
   );
 }

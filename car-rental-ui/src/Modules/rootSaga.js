@@ -6,7 +6,10 @@ import { watchCarCategories } from "./Dictionary/CarCategories/Saga";
 import { watchCarModels } from "./Dictionary/CarModels/Saga";
 import { watchAuthorization } from "./User/Authorize/Saga";
 import { watchTokenValidation } from "./User/TokenValidation/Saga";
-import { watchTransmissions } from "./Dictionary/Transmissions/Saga";
+import { watchTransmissions } from "./Dictionary/Transmissions/Saga"; 
+import { watchRegistration } from "./User/Register/Saga";
+import { watchFuelTypes } from "./Dictionary/FuelTypes/Saga";
+import { watchWheelTypes } from "./Dictionary/WheelTypes/Saga";
 
 export default function* rootSaga() {
     yield all([
@@ -16,6 +19,9 @@ export default function* rootSaga() {
         watchCarModels(),
         watchAuthorization(),
         watchTokenValidation(),
-        watchTransmissions()
+        watchTransmissions(),
+        watchRegistration(),
+        watchFuelTypes(),
+        watchWheelTypes()
     ])
 }

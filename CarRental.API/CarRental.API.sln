@@ -11,13 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{769A7704-F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4D1B714B-BF62-4E68-9163-47378FA4FEDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{4101EE54-3AEF-40B2-BC33-38CC84ACC79C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{4101EE54-3AEF-40B2-BC33-38CC84ACC79C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{499241B1-40D7-42CD-9556-BBBB2AB3403B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{499241B1-40D7-42CD-9556-BBBB2AB3403B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Infrastructure", "CarRental.Infrastructure\CarRental.Infrastructure.csproj", "{4C040452-3314-4B3E-A7D9-95B273BADC79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Infrastructure", "CarRental.Infrastructure\CarRental.Infrastructure.csproj", "{4C040452-3314-4B3E-A7D9-95B273BADC79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Persistance", "CarRental.Persistance\CarRental.Persistance.csproj", "{52F3EB49-2313-4B20-B25B-21D7A241E74C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Persistance", "CarRental.Persistance\CarRental.Persistance.csproj", "{52F3EB49-2313-4B20-B25B-21D7A241E74C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{54B7D363-ACE3-4A26-B949-82737D4B1951}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1A24B39A-DF99-4C71-B39B-A96523CC0847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Application.Tests", "CarRental.Application.Tests\CarRental.Application.Tests.csproj", "{8C5DF60E-71C0-455B-A8EE-669FC4FA3E03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +51,10 @@ Global
 		{52F3EB49-2313-4B20-B25B-21D7A241E74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52F3EB49-2313-4B20-B25B-21D7A241E74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52F3EB49-2313-4B20-B25B-21D7A241E74C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5DF60E-71C0-455B-A8EE-669FC4FA3E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5DF60E-71C0-455B-A8EE-669FC4FA3E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5DF60E-71C0-455B-A8EE-669FC4FA3E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5DF60E-71C0-455B-A8EE-669FC4FA3E03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +65,8 @@ Global
 		{499241B1-40D7-42CD-9556-BBBB2AB3403B} = {769A7704-F9E7-48CC-8FF7-B6459B797084}
 		{4C040452-3314-4B3E-A7D9-95B273BADC79} = {4D1B714B-BF62-4E68-9163-47378FA4FEDF}
 		{52F3EB49-2313-4B20-B25B-21D7A241E74C} = {4D1B714B-BF62-4E68-9163-47378FA4FEDF}
+		{1A24B39A-DF99-4C71-B39B-A96523CC0847} = {54B7D363-ACE3-4A26-B949-82737D4B1951}
+		{8C5DF60E-71C0-455B-A8EE-669FC4FA3E03} = {1A24B39A-DF99-4C71-B39B-A96523CC0847}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7ABD4472-ED0F-4388-80D3-1A50610FC43D}

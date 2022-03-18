@@ -17,8 +17,7 @@ useEffect(() => {
 
 }, [createdAlert]);
 
-  useEffect(() => {
-    console.log(isTokenValid);
+  useEffect(() => { 
          if(isTokenValid) {
            navigate("/admin/home");
          }

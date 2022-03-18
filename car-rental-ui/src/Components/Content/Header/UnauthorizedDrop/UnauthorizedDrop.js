@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authorizeAction } from '../../../../Modules/User/Authorize/Action';
 import { decodeJwtToken, IsTokenValid, useTokenValidation } from '../../../../Tools/Helpers/jwtTokenHelper';
 import { tokenValidationAction } from '../../../../Modules/User/TokenValidation/Action';
+import { Link } from 'react-router-dom';
 
-const UnauthorizedDrop = () => {
+const UnauthorizedDrop = ({checkSuccessfulSignIn}) => {
 
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
@@ -25,6 +26,7 @@ const UnauthorizedDrop = () => {
     useEffect(() => {
         if(authorizedDataSelector.data?.token !==  undefined) { 
             localStorage.setItem("tokenData", JSON.stringify(authorizedDataSelector.data));        
+            checkSuccessfulSignIn();
         }
     }, [authorizedDataSelector])
 
@@ -36,8 +38,7 @@ const UnauthorizedDrop = () => {
     }, []);
 
     
-    useEffect(() => {
-        console.log(checkToken.data);
+    useEffect(() => { 
     }, [checkToken]);
 
     return <div className={styles.AuthorizedDrop}>
@@ -98,12 +99,12 @@ const UnauthorizedDrop = () => {
         </div>
 
         <div className={styles.socialBtns}>
-            <a href='#' className={`${styles.loginBtn} ${styles.signUpBtn}`}>
+            <Link to={"/register"} className={`${styles.loginBtn} ${styles.signUpBtn}`}>
                 <span className={styles.registerIcon}>Cr</span>
                  <span className={styles.socialBtnText}> 
                     Sign Up
                 </span>
-            </a> 
+            </Link> 
         </div>
 
     </div>

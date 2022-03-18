@@ -22,7 +22,7 @@ function* currentAsync() {
        
         yield put(carCategoriesAction.set(data.data.data));
     } catch(error) {
-        console.log(error);
+        // console.log(error);
     }
 }
 

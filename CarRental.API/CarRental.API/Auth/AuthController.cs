@@ -26,7 +26,7 @@ namespace CarRental.API.Auth
 
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
+        public async Task<RegistrationResponse> Register([FromBody] RegisterModel registerModel)
         {
 
             var smtpCredintials = new SmtpCredintials()
@@ -47,9 +47,9 @@ namespace CarRental.API.Auth
 
             using var scope = serviceScopeFactory.CreateScope();
             var authHandler = scope.ServiceProvider.GetService<IAuthorization>();
-            await authHandler.Register(registerModel, smtpCredintials, confirmCredintials);
+            var result = await authHandler.Register(registerModel, smtpCredintials, confirmCredintials);
 
-            return Ok();
+            return result;
         }
 
         [HttpGet("EmailConfirmation")]

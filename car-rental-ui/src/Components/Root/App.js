@@ -10,35 +10,30 @@ import Slide from '../Content/Slider/Slide';
 import { useUnauthorized } from '../../Tools/Helpers/axios';
 
 import { useParams } from 'react-router';
+import CarRentalRoutes from '../../Routes/Routes';
+import Register from '../Content/Register/Register';
 function App() {
 
    useUnauthorized()
-   const { urlType } = useParams();
+//    const { urlType } = useParams();
    
-   const renderComponent = () => {
+//    const renderComponent = () => {
  
-      switch (urlType) {
-          case 'home':
-              return <Home />
+//       switch (urlType) {
+//           case 'home':
+//               return <Home />
+//          case 'register':
+//             return <Register/>
 
-      }
-  }
+//       }
+//   }
 
    return (
       <div className={styles.app}>
          <div className={styles.appHeader}  >
-            <Header />
-
-
+            <Header /> 
          </div>
-         <div className={styles.appContent}>
-            <div className={styles.sliderArea}>
-               <Slide />
-            </div>
-            <div className={styles.appContentArea}>
-                {renderComponent()}
-            </div>
-         </div>
+       
       </div>
    );
 }
@@ -63,3 +58,13 @@ export default App;
 // const citiesStateData = useSelector(state => state.cities)
 // const citiesData = citiesStateData.data;
 
+// <div className={styles.appContent}>
+// <div className={styles.sliderArea}>
+//    <Slide />
+// </div>
+// <div className={styles.appContentArea}>
+//     {/* {renderComponent()} */}
+//     <CarRentalRoutes />
+//     {/* <Home /> */}
+// </div>
+// </div>

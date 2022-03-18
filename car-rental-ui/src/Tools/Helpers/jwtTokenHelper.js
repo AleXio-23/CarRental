@@ -16,7 +16,7 @@ export const useTokenValidation = ({token}) => {
     const isTokenValid = validateToken?.isValid
 
     useEffect(() => {
-        console.log('Hook loaded', token);
+        // console.log('Hook loaded', token);
     }, [])
 
     return {

@@ -4,11 +4,13 @@ import {reducer as manufacturersReducer} from "./Dictionary/Manufacturers";
 import {reducer as carCategoriesReducer} from "./Dictionary/CarCategories";
 import {reducer as carModelsReducer} from "./Dictionary/CarModels";
 import {reducer as transmissionsReducer} from "./Dictionary/Transmissions";
+import {reducer as fuelTypesReducer} from "./Dictionary/FuelTypes";
+import {reducer as wheelTypesReducer} from "./Dictionary/WheelTypes";
 
 import {reducer as authorizeReducer} from "./User/Authorize";
 import {reducer as tokenValidationReducer} from "./User/TokenValidation";
 import { reducer as filterReducer } from "./Filter";
-
+import { reducer as registrationReducer } from "./User/Register";
 
 
 
@@ -20,7 +22,10 @@ const allReducers = combineReducers({
     carModels: carModelsReducer,
     authorize: authorizeReducer,
     tokenValidate: tokenValidationReducer,
-    transmissions: transmissionsReducer
+    transmissions: transmissionsReducer,
+    registration: registrationReducer,
+    fuelTypes: fuelTypesReducer,
+    wheelTypes: wheelTypesReducer
 });
 
 

@@ -10,6 +10,8 @@ import { carCategoriesAction } from '../../../../Modules/Dictionary/CarCategorie
 import { filterAction } from '../../../../Modules/Filter/Action';
 import { carModelsAction } from '../../../../Modules/Dictionary/CarModels/Action';
 import { TransmissionsAction } from '../../../../Modules/Dictionary/Transmissions/Action';
+import { FuelTypesAction } from '../../../../Modules/Dictionary/FuelTypes/Action';
+import { WheelTypesAction } from '../../../../Modules/Dictionary/WheelTypes/Action';
 
 
 const CarSpecificationFilter = () => {
@@ -140,9 +142,36 @@ const CarSpecificationFilter = () => {
     }, []);
     useEffect(() => {
         
-        setTransmissionsDataSet(transmissionsData);
-        console.log(transmissionsDataSet);
+        setTransmissionsDataSet(transmissionsData); 
     }, [transmissionsData]);
+
+ 
+    const fueltypesSelector = useSelector(state => state.fuelTypes);
+    const fuelTypesData = fueltypesSelector.data;
+    const [fuelTypesSelectedIds, setFuelTypesSelectedIds] = useState([]);
+    const [ fuelTypesDataSet, setFuelTypesDataSet] = useState([]);
+    useEffect(() => {
+        dispatch(FuelTypesAction.get());
+    }, []);
+    useEffect(() => {
+        
+        setFuelTypesDataSet(fuelTypesData); 
+    }, [fuelTypesData]);
+
+
+    
+ 
+    const wheeltypesSelector = useSelector(state => state.wheelTypes);
+    const wheelTypesData = wheeltypesSelector.data;
+    const [wheelTypesSelectedIds, setWheelTypesSelectedIds] = useState([]);
+    const [ wheelTypesDataSet, setWheelTypesDataSet] = useState([]);
+    useEffect(() => {
+        dispatch(WheelTypesAction.get());
+    }, []);
+    useEffect(() => {
+        
+        setWheelTypesDataSet(wheelTypesData); 
+    }, [wheelTypesData]);
 
     return <div className={styles.carSpecificationFilter}>
 
@@ -292,20 +321,20 @@ const CarSpecificationFilter = () => {
                     selectedItemOutFieldType={'id'}
                     selectedItemId={'id'}
                     selectedItemName={'transmisionName'}
-                    isSearchEnabled={true}
+                    isSearchEnabled={false}
                 />
             </div>
 
             <div className={styles.specsDrop} >
                 <MultiSelectFilterDropField
-                    fieldTItle={"FuelType"}
-                    data={carModelsDataSet}
-                    selectedItemOut={carModelSeletedIds}
-                    setSelectedItemOutData={setCarModelsSelectedIds}
+                    fieldTItle={"Fuel type"}
+                    data={fuelTypesDataSet}
+                    selectedItemOut={fuelTypesSelectedIds}
+                    setSelectedItemOutData={setFuelTypesSelectedIds}
                     selectedItemOutFieldType={'id'}
                     selectedItemId={'id'}
-                    selectedItemName={'name'}
-                    isSearchEnabled={true}
+                    selectedItemName={'fuelTypeName'}
+                    isSearchEnabled={false}
                 />
             </div>
 
@@ -313,13 +342,13 @@ const CarSpecificationFilter = () => {
             <div className={styles.specsDrop} >
                 <FilterDropField
                     fieldTItle={"Wheel"}
-                    data={yearsSelectDtSet}
-                    selectedItemOut={filterYearsSelectFrom}
-                    setSelectedItemOutData={setfitlerYearsSelectFrom}
-                    selectedItemOutFieldType={'key'}
-                    selectedItemId={'key'}
-                    selectedItemName={'value'}
-                    isSearchEnabled={true}
+                    data={wheelTypesDataSet}
+                    selectedItemOut={wheelTypesSelectedIds}
+                    setSelectedItemOutData={setWheelTypesDataSet}
+                    selectedItemOutFieldType={'id'}
+                    selectedItemId={'id'}
+                    selectedItemName={'wheelTypeName'}
+                    isSearchEnabled={false}
                 />
             </div>
 

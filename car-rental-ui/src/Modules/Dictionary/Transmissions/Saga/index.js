@@ -20,7 +20,7 @@ function* currentAsync() {
         const filterData = data.data.data;
         yield put(TransmissionsAction.set(filterData));
     } catch(error) {
-        console.log(error);
+        // console.log(error);
     }
 }
 

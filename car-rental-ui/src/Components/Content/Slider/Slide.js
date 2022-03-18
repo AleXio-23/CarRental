@@ -11,159 +11,178 @@ import Filter from '../Filter/Filter';
 
 const Slide = () => {
     const sliderRef = useRef();
-  
-
- const [ style, setStyle] = useState({
-     root: styles.sliderArea
- })
-
- const [imgStyles, setImgStyles] = useState({ 
-     sedan: clsx(''),
-     jeep: clsx(''),
-     bicycle: clsx('')
- });
 
 
+    const [style, setStyle] = useState({
+        root: styles.sliderArea
+    })
 
- const [sliderImageBoxStyles, setSliderImageBoxStyles] = useState({
-    //  root: styles.sliderImagesBox
-    root: clsx(styles.sliderImagesBox)
- });
-
- const [sliderTitle, setSliderTitle] = useState({
-    root: clsx(styles.sliderTitle )
- })
-
- 
- 
-
-const [textStyles, setTextStyles] = useState({ 
-    text1:  '',
-    text2: '',
-    text3: ''
-});
-
-
-const [backgroundImgStyles, setBackgroundImgStyles] = useState({ 
-    bg1: '',
-    bg2: '',
-    bg3: ''
-});
-
-const onStartSlider = () => {
-    setBackgroundImgStyles ({
-        bg1: styles.sliderBacgroundsShow,
-        bg2: styles.bgDefaults,
-        bg3:  styles.bgDefaults
+    const [imgStyles, setImgStyles] = useState({
+        sedan: clsx(''),
+        jeep: clsx(''),
+        bicycle: clsx('')
     });
-    setTextStyles({ 
-        text1:  styles.textShow,
-        text2: styles.textDefaults,
-        text3: styles.textDefaults
-    });
-    setImgStyles({
-        sedan: clsx(styles.imgCarsSetvisible),
-        jeep: clsx(styles.carImagesDefault),
-        bicycle: clsx(styles.carImagesDefault)
-    });
-}
-const SecondSlider = () => {
-    setBackgroundImgStyles ({
-        bg1: styles.bgDefaults,
-        bg2: styles.sliderBacgroundsShow,
-        bg3:  styles.bgDefaults
-    });
-    setTextStyles({ 
-        text1:  styles.textDissapear,
-        text2: styles.textShow,
-        text3: styles.textDefaults
-    });
-    setImgStyles({
-        sedan: clsx(styles.imgCarsSetInvisible),
-        jeep: clsx(styles.imgCarsSetvisible),
-        bicycle: clsx(styles.carImagesDefault)
-    });
-}
 
 
-const ThirdSlider = () => {
-    setBackgroundImgStyles ({
-        bg1: styles.bgDefaults,
-        bg2: styles.bgDefaults,
-        bg3:  styles.sliderBacgroundsShow
-    });
-    setTextStyles({ 
-        text1:  styles.textDissapear,
-        text2: styles.textDissapear,
-        text3: styles.textShow
-    });
-    setImgStyles({
-        sedan: clsx(styles.imgCarsSetInvisible),
-        jeep: clsx(styles.imgCarsSetInvisible),
-        bicycle: clsx(styles.imgCarsSetvisible)
-    });
-}
 
-const infinitySliding = () => {
-    onStartSlider();    
+    const [sliderImageBoxStyles, setSliderImageBoxStyles] = useState({
+        //  root: styles.sliderImagesBox
+        root: clsx(styles.sliderImagesBox)
+    });
 
-    // setTimeout(function(){       
-    //     SecondSlider();
+    const [sliderTitle, setSliderTitle] = useState({
+        root: clsx(styles.sliderTitle)
+    })
 
-    //     setTimeout(function(){ 
+
+
+
+    const [textStyles, setTextStyles] = useState({
+        text1: '',
+        text2: '',
+        text3: ''
+    });
+
+
+    const [backgroundImgStyles, setBackgroundImgStyles] = useState({
+        bg1: '',
+        bg2: '',
+        bg3: ''
+    });
+
+    const onStartSlider = () => {
+        setBackgroundImgStyles({
+            bg1: styles.sliderBacgroundsShow,
+            bg2: styles.bgDefaults,
+            bg3: styles.bgDefaults
+        });
+        setTextStyles({
+            text1: styles.textShow,
+            text2: styles.textDefaults,
+            text3: styles.textDefaults
+        });
+        setImgStyles({
+            sedan: clsx(styles.imgCarsSetvisible),
+            jeep: clsx(styles.carImagesDefault),
+            bicycle: clsx(styles.carImagesDefault)
+        });
+    }
+    const SecondSlider = () => {
+        setBackgroundImgStyles({
+            bg1: styles.bgDefaults,
+            bg2: styles.sliderBacgroundsShow,
+            bg3: styles.bgDefaults
+        });
+        setTextStyles({
+            text1: styles.textDissapear,
+            text2: styles.textShow,
+            text3: styles.textDefaults
+        });
+        setImgStyles({
+            sedan: clsx(styles.imgCarsSetInvisible),
+            jeep: clsx(styles.imgCarsSetvisible),
+            bicycle: clsx(styles.carImagesDefault)
+        });
+    }
+
+
+    const ThirdSlider = () => {
+        setBackgroundImgStyles({
+            bg1: styles.bgDefaults,
+            bg2: styles.bgDefaults,
+            bg3: styles.sliderBacgroundsShow
+        });
+        setTextStyles({
+            text1: styles.textDissapear,
+            text2: styles.textDissapear,
+            text3: styles.textShow
+        });
+        setImgStyles({
+            sedan: clsx(styles.imgCarsSetInvisible),
+            jeep: clsx(styles.imgCarsSetInvisible),
+            bicycle: clsx(styles.imgCarsSetvisible)
+        });
+    }
+
+    const [currentSlide, setCurrentSlide] = useState(1);
+
+    // var sliderVar = setInterval(function () {
+    //     if (currentSlide === 1) {
+    //         SecondSlider();
+    //         setCurrentSlide(2);
+    //     }
+    //     if (currentSlide === 2) {
     //         ThirdSlider();
+    //         setCurrentSlide(3);
+    //     }
+    //     if (currentSlide === 3) {
+    //         onStartSlider();
+    //         setCurrentSlide(1);
+    //     }
+    //     window.clearInterval(sliderVar);
+    // }, 1000);
 
-    //         setTimeout(function(){ 
-    //             return infinitySliding();
-    //           }, 4000);
-    //       }, 4000);
-    //   }, 4000);
-
-      
-}
-
-useEffect(() => {
-    infinitySliding();
-   
-}, []);
+    const infinitySliding = () => {
+        onStartSlider();
 
 
- return <div className={styles.slide} ref={sliderRef}>
+        // setTimeout(function(){       
+        //     SecondSlider();
 
-     <div className={styles.sliderImagesBg}>
-            <img className={`${backgroundImgStyles.bg1}  `} src={backgroundCityCar}/>
-            <img className={`${backgroundImgStyles.bg2}  `} src={backgroundOffroad}/>
-            <img className={`${backgroundImgStyles.bg3}  `}  src={backgroundBike}/>
-     </div>
-     
-     <div className={style.root}>
-       <div className={styles.sliderContent}>
-            <h1 className={sliderTitle.root}>Car Rentals</h1>
+        //     setTimeout(function(){ 
+        //         ThirdSlider();
 
-            <div className={styles.textArea}>
-                <h3 className={ textStyles.text1}>With Flexible Bookings & No Hidden Fees, Secure Your Car Rental at The Best Price Now. Unbeatable Prices. No Credit Card Fees.</h3>
-                <h3 className={ textStyles.text2}>Find the best rental prices on luxury, offroad, economy, and family rental cars anywhere in your country.  </h3>
-                <h3 className={ textStyles.text3}>Cheap bicycle rental. Find the best deals on bicycle hire. Compare prices, read reviews, rent a bicycle with the Best Price Guarantee.</h3>
+        //         setTimeout(function(){ 
+        //             return infinitySliding();
+        //           }, 4000);
+        //       }, 4000);
+        //   }, 4000);
+
+
+    }
+
+    useEffect(() => {
+        infinitySliding();
+
+    }, []);
+
+
+    return <div className={styles.slide} ref={sliderRef}>
+
+        <div className={styles.sliderImagesBg}>
+            <img className={`${backgroundImgStyles.bg1}  `} src={backgroundCityCar} />
+            <img className={`${backgroundImgStyles.bg2}  `} src={backgroundOffroad} />
+            <img className={`${backgroundImgStyles.bg3}  `} src={backgroundBike} />
+        </div>
+
+        <div className={style.root}>
+            <div className={styles.sliderContent}>
+                <h1 className={sliderTitle.root}>Car Rentals</h1>
+
+                <div className={styles.textArea}>
+                    <h3 className={textStyles.text1}>With Flexible Bookings & No Hidden Fees, Secure Your Car Rental at The Best Price Now. Unbeatable Prices. No Credit Card Fees.</h3>
+                    <h3 className={textStyles.text2}>Find the best rental prices on luxury, offroad, economy, and family rental cars anywhere in your country.  </h3>
+                    <h3 className={textStyles.text3}>Cheap bicycle rental. Find the best deals on bicycle hire. Compare prices, read reviews, rent a bicycle with the Best Price Guarantee.</h3>
+                </div>
             </div>
-       </div>
-      
-        <div className={sliderImageBoxStyles.root}>
-            <img className={imgStyles.defaultStyle,imgStyles.sedan } src={Sedan}/>
-            <img className={`${imgStyles.defaultStyle} ${imgStyles.jeep}`} src={Jeep}/>
-            <img className={`${imgStyles.defaultStyle} ${imgStyles.bicycle}`}  src={bicycle}/>
-        </div>
-       
-       
-       
-     </div>
 
-     
-     <div className={styles.filterArea}>
+            <div className={sliderImageBoxStyles.root}>
+                <img className={`${imgStyles.defaultStyle} ${imgStyles.sedan} `} src={Sedan} />
+                <img className={`${imgStyles.defaultStyle} ${imgStyles.jeep}`} src={Jeep} />
+                <img className={`${imgStyles.defaultStyle} ${imgStyles.bicycle}`} src={bicycle} />
+            </div>
+
+
+
+        </div>
+
+
+        <div className={styles.filterArea}>
             <Filter />
- 
+
         </div>
 
- </div>
+    </div>
 
 }
 

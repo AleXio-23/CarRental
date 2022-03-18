@@ -11,7 +11,7 @@ axiosInstance.interceptors.response.use(
       
   },
   (error) => {
-    console.log(error.response);
+    // console.log(error.response);
     if(error.response.status === 401) {
       // console.log("Unauthorized Error. Client is not authenticated.");
       // localStorage.clear('tokenData');
@@ -45,8 +45,8 @@ export const useUnauthorized = () => {
 
   axiosInstance.interceptors.response.use(
     // (response) => console.log(response, 2222),
-    (error) => {
-      if(error.response.status === 401) {
+    (error) => { 
+      if(error?.response?.status === 401) {
         // console.log('araaaoeee')
         localStorage.clear('tokenData');
       }

@@ -1,22 +1,26 @@
-import { useEffect, useRef, useState } from 'react'; 
+import { useEffect, useRef, useState } from 'react';
 import AuthorizedDrop from './AuthorizedDrop/AuthorizedDrop';
 import styles from './Header.module.css';
 import HeaderMenu from './HeaderMenu/HeaderMenu';
 import { ReactComponent as LogoSvg } from './logo.svg';
 import UnauthorizedDrop from './UnauthorizedDrop/UnauthorizedDrop';
+import noAvatar from '../../../Images/User/noAvatar.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 
 const Header = () => {
 
     const [isAuthorised, setAuthorised] = useState(false);
     const [isHeaderLogUserAreaOpen, setHeaderLogUserAreaOpen] = useState(false);
- 
+
     const ref = useRef(null);
 
     const handleClickOutside = (event) => {
- 
-        if (ref.current && ref.current.contains(event.target)) { 
+
+        if (ref.current && ref.current.contains(event.target)) {
             setHeaderLogUserAreaOpen(true);
-        } else {  
+        } else {
             setHeaderLogUserAreaOpen(false);
         }
     };
@@ -31,25 +35,33 @@ const Header = () => {
 
     useEffect(() => {
         var item = localStorage.getItem('tokenData');
-        if(item === null || item === undefined) {
+        if (item === null || item === undefined) {
             setAuthorised(false);
         } else {
             setAuthorised(true);
         }
     }, []);
 
-    console.log(localStorage.getItem('tokenData'));
+
+    const checkSuccessfulSignIn = () => {
+        var item = localStorage.getItem('tokenData');
+        if (item === null || item === undefined) {
+            setAuthorised(false);
+        } else {
+            setAuthorised(true);
+        }
+    }
 
 
     return <div className={styles.header}>
         <div className={styles.headerContent}>
             <div className={styles.headerLogo}>
-                
-                <div className={styles.svgLogoArea}> 
-                    <LogoSvg  className={styles.headerLogoSvg}/>
-                   
+
+                <div className={styles.svgLogoArea}>
+                    <LogoSvg className={styles.headerLogoSvg} />
+
                 </div>
-                
+
                 <div className={styles.logoText}>
                     <span>Car</span>
                     <span>Rental</span>
@@ -58,39 +70,44 @@ const Header = () => {
 
 
 
-        <div className={styles.headerLeftSide}>
-            
-            <div className={styles.menuArea}> 
-                <HeaderMenu />  
-            </div>
+            <div className={styles.headerLeftSide}>
 
-          <div ref={ref} className={styles.headerUserArea}> 
-                {
-                    isAuthorised?
-                    <div className={`${styles.authorizedHeaderMenu}   `}>
-                        reg
-                    </div>
-                    :
-                    <div className={`${styles.signInBtn}   `} >Sign In</div>
-                }    
-
-                <div className={`${styles.headerDropDownArea} ${isHeaderLogUserAreaOpen? styles.headerDropDownAreaOpened : styles.headerDropDownAreaClosed} `}>
-                    
-                     {
-                         isAuthorised?
-                         <AuthorizedDrop/> : <UnauthorizedDrop/>
-                     }
+                <div className={styles.menuArea}>
+                    <HeaderMenu />
                 </div>
+
+                <div ref={ref} className={styles.headerUserArea}>
+                    {
+                        isAuthorised ?
+                            <div className={`${styles.authorizedHeaderMenu}   `}>
+                                <img src={noAvatar} alt="Avatar" />
+                            </div>
+                            :
+                            <div className={`${styles.signInBtn}   `} >Sign In</div>
+                    }
+
+                    <div className={`${styles.headerDropDownArea} ${isHeaderLogUserAreaOpen ? styles.headerDropDownAreaOpened : styles.headerDropDownAreaClosed} `}>
+
+                        {
+                            isAuthorised ?
+                                <AuthorizedDrop /> : <UnauthorizedDrop checkSuccessfulSignIn={checkSuccessfulSignIn} />
+                        }
+                    </div>
+                </div>
+
+
+                <div className={styles.barsArea}>
+                    <FontAwesomeIcon icon={faBars} className={styles.barsIcon} />
+                </div>
+
+
             </div>
 
 
         </div>
-            
-            
-    </div>
 
-        
- </div>
+
+    </div>
 
 }
 
