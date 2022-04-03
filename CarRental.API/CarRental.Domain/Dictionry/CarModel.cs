@@ -13,6 +13,7 @@ namespace CarRental.Domain.Dictionary
          
         public string Name { get; set; } = null!;
         public int ManufacturerId { get; set; }
+        public string Code { get; set; }
 
         public virtual ICollection<Car.Car> Cars { get; set; }
     }

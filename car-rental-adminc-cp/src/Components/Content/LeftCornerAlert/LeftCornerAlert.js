@@ -31,8 +31,7 @@ const LeftCornerAlert = ({type="info", message = "", visible, createAlert}) => {
 
     })
     useEffect(() => {
-        setAlertVisibility(visible);
-        console.log(visible);
+        setAlertVisibility(visible); 
     }, [visible]);
 
     useEffect(() => { 

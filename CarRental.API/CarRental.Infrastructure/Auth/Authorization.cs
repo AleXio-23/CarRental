@@ -22,6 +22,7 @@ namespace CarRental.Infrastructure.Auth
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
         private readonly RoleManager<Role> roleManager;
+         
 
         public Authorization(
             IConfiguration configuration,
@@ -35,34 +36,59 @@ namespace CarRental.Infrastructure.Auth
             this.roleManager = roleManager;
         }
 
-        public async Task Register(RegisterModel registerModel, SmtpCredintials credintials, ConfirmationCredintials hostCredintials)
+        public async Task<RegistrationResponse> Register(RegisterModel registerModel, SmtpCredintials credintials, ConfirmationCredintials hostCredintials)
         {
             try
             {
+
+                var tryFindByUserName = await userManager.FindByNameAsync(registerModel.UserName);
+                if(tryFindByUserName != null)
+                {
+                    return new RegistrationResponse() { ErrorOccured = true, ErrorMessage = "This username is registered." };
+                }
+
+                var tryFindByMail = await userManager.FindByEmailAsync(registerModel.Email);
+                if (tryFindByMail != null)
+                {
+                    return new RegistrationResponse() { ErrorOccured = true, ErrorMessage = "This mail is registered." };
+                }
+
                 var newUser = new User
                 {
                     Email = registerModel.Email,
                     UserName = registerModel.UserName.Length > 0 ? registerModel.UserName : registerModel.Email
 
-                };
+                };  
+
+             
 
                 var createUserResult = await userManager.CreateAsync(newUser, registerModel.Password);
 
                 if (createUserResult.Succeeded)
                 {
+
+                    var checkRole = await roleManager.RoleExistsAsync("Customer");
+                    if(checkRole)
+                    {
+                        await userManager.AddToRoleAsync(newUser, "Customer");
+                    }
+                     
                     var generateEmailConfirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(newUser);
                     var encodedToken = HttpUtility.UrlEncode(generateEmailConfirmationToken);
                     var confirmationLink = $"https://{hostCredintials.Host}:{hostCredintials.Port}/Auth/EmailConfirmation?userId={newUser.Id}&token={encodedToken}";
 
 
                     var message = new MailMessage(credintials.MailFrom, newUser.Email, "Email confirmation", $"Please, confirm your email: {confirmationLink}");
-                    using (var emailClient = new SmtpClient(credintials.Host, credintials.Port))
+                    using var emailClient = new SmtpClient(credintials.Host, credintials.Port);
+                    emailClient.Credentials = new NetworkCredential(credintials.NetworkCredintialUsername, credintials.Password);
+                    await emailClient.SendMailAsync(message);
+
+                    return new RegistrationResponse()
                     {
-                        emailClient.Credentials = new NetworkCredential(credintials.NetworkCredintialUsername, credintials.Password);
-                        await emailClient.SendMailAsync(message);
-                    }
-
-
+                        Succees = true,
+                        Mail = newUser.Email
+                    };
+                    
                 }
                 else
                 {
@@ -115,10 +141,21 @@ namespace CarRental.Infrastructure.Auth
                     var userRoles = await userManager.GetRolesAsync(user);
 
                     var userclaims = await userManager.GetClaimsAsync(user);
+                    userclaims.Add(new Claim("Id", user.Id.ToString()));
 
                     foreach (var role in userRoles)
                     {
-                        userclaims.Add(new Claim(ClaimTypes.Role, role));
+                        userclaims.Add(new Claim("Roles", role));
+                    }
+
+                    if(user.Email != null)
+                    {
+                        userclaims.Add(new Claim("Email", user.Email));
+
+                    }
+                    if(user.UserName != null)
+                    { 
+                        userclaims.Add(new Claim("Username", user.UserName)); 
                     }
 
 
@@ -147,10 +184,11 @@ namespace CarRental.Infrastructure.Auth
         }
 
 
-        private string CreateToken(IList<Claim> claims, DateTime expiresAt, byte[] clientSecret)
+        private static string CreateToken(IList<Claim> claims, DateTime expiresAt, byte[] clientSecret)
         {
 
             var jwt = new JwtSecurityToken(
+                
                 claims: claims,
                 notBefore: DateTime.Now,
                 expires: expiresAt,

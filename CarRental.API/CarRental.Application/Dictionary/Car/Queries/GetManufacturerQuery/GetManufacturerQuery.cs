@@ -10,7 +10,7 @@ namespace CarRental.Application.Dictionary.Car.Queries.GetManufacturerQuery
 {
     class GetManufacturerQuery : IGetManufacturerQuery
     {
-        private ICarRentalDBService _dbService;
+        private readonly ICarRentalDBService _dbService;
 
         public GetManufacturerQuery(ICarRentalDBService dbService)
         {

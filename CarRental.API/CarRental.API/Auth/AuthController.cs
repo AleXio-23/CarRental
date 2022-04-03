@@ -1,5 +1,6 @@
 ﻿using CarRental.Infrastructure.Auth;
 using CarRental.Infrastructure.Auth.Models;
+using CarRental.Persistance.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace CarRental.API.Auth
 
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
+        public async Task<RegistrationResponse> Register([FromBody] RegisterModel registerModel)
         {
 
             var smtpCredintials = new SmtpCredintials()
@@ -46,9 +47,9 @@ namespace CarRental.API.Auth
 
             using var scope = serviceScopeFactory.CreateScope();
             var authHandler = scope.ServiceProvider.GetService<IAuthorization>();
-            await authHandler.Register(registerModel, smtpCredintials, confirmCredintials);
+            var result = await authHandler.Register(registerModel, smtpCredintials, confirmCredintials);
 
-            return Ok();
+            return result;
         }
 
         [HttpGet("EmailConfirmation")]
@@ -75,7 +76,7 @@ namespace CarRental.API.Auth
             return Ok(result);
         }
 
-
+        [Authorize]
         [HttpPost("SignOut")]
         public async Task<IActionResult> SignOut()
         {
@@ -83,6 +84,15 @@ namespace CarRental.API.Auth
             var signInHandler = scope.ServiceProvider.GetService<IAuthorization>();
             await signInHandler.SignOut();
             return Ok();
+        }
+
+        [Authorize]
+        [Route("TokenValidate")]
+        [HttpGet]
+        public ActionResult<ServiceResult<bool>> TokenValidate()
+        {
+
+            return Ok(new ServiceResult<bool>() { Success = true});
         }
     }
 }

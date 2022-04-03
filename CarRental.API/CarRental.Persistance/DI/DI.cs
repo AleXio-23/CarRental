@@ -23,6 +23,11 @@ namespace CarRental.Persistance.DI
             serviceCollection.AddScoped<IDictionaryRepository<City, int>, DictionaryRepository<City, int>>();
             serviceCollection.AddScoped<IDictionaryRepository<VwCity, int>, DictionaryRepository<VwCity, int>>();
             serviceCollection.AddScoped<IDictionaryRepository<Manufacturer, int>, DictionaryRepository<Manufacturer, int>>();
+            serviceCollection.AddScoped<IDictionaryRepository<CarModel, int>, DictionaryRepository<CarModel, int>>();
+            serviceCollection.AddScoped<IDictionaryRepository<CarCategory, int>, DictionaryRepository<CarCategory, int>>();
+            serviceCollection.AddScoped<IDictionaryRepository<Transmision, int>, DictionaryRepository<Transmision, int>>();
+            serviceCollection.AddScoped<IDictionaryRepository<FuelType, int>, DictionaryRepository<FuelType, int>>();
+            serviceCollection.AddScoped<IDictionaryRepository<WheelType, int>, DictionaryRepository<WheelType, int>>();
              
             return serviceCollection;
         }

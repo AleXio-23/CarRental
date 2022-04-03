@@ -11,7 +11,7 @@ namespace CarRental.Infrastructure.Auth
     public interface IAuthorization
     {
 
-        Task Register(RegisterModel registerModel,SmtpCredintials credintials, ConfirmationCredintials hostCredintials);
+        Task<RegistrationResponse> Register(RegisterModel registerModel,SmtpCredintials credintials, ConfirmationCredintials hostCredintials);
         Task<IdentityResult> EmailConfirmation(int userId, string token);
         Task<TokenModel> SignIn(LoginModel loginModel, byte[] clientSecret);
         Task SignOut();
