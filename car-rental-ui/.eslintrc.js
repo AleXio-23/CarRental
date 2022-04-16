@@ -30,6 +30,10 @@ module.exports = {
     'quote-props': 0,
     'jsx-a11y/label-has-associated-control': 0,
     allowForLoopAfterthoughts: 0,
+    'import/no-unresolved': 0,
+    'linebreak-style': 0,
+    'no-plusplus': 0,
+    'react/function-component-definition': 0,
     // 'linebreak-style': ['error', 'windows'],
     'import/extensions': [
       'error',
